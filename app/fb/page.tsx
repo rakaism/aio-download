@@ -1,17 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
-export default function fb() {
+export default function Fb() {
   const rapidApiEndpoint = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_FB as string;
   const rapidApiHostHeader = new URL(rapidApiEndpoint).host;
   const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
 
   const [inputValue, setInputValue] = useState("");
   const [thumbnail, setThumbnail] = useState("");
-  const [title, setTitle] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async () => {
     if (!inputValue.startsWith("http")) {
@@ -32,18 +31,17 @@ export default function fb() {
 
       const data = await response.json();
       if (data.success) {
-        setTitle(data.title || "");
         setThumbnail(data.thumbnail || "");
         if (data.links) {
           setDownloadUrl(data.links["Download High Quality"] || "");
         }
-        setErrorMsg("");
+        alert("");
       } else {
-        setErrorMsg("Data tidak ditemukan.");
+        alert("Data tidak ditemukan.");
       }
     } catch (error) {
       console.error("Gagal saat fetch data.", error);
-      setErrorMsg("Gagal fetch data.");
+      alert("Gagal fetch data.");
     }
   };
 
@@ -64,7 +62,7 @@ export default function fb() {
       {/* Menampilkan thumbnail jika ada */}
       {thumbnail && (
         <div className="max-w-md mx-auto mb-4">
-          <img
+          <Image
             src={thumbnail}
             alt="Thumbnail Media"
             className="mx-auto rounded shadow-lg"
