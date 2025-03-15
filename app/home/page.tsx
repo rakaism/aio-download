@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 
 export default function home() {
   return (
@@ -48,28 +48,28 @@ export default function home() {
           </div>
         </div>
         <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img src="\landwindcss\images\hero.png" alt="hero image" />
+          <Image src="\landwindcss\images\hero.png" alt="hero image" />
         </div>
       </div>
 
       <div className="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-16">
         <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 sm:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
           <a href="/spotify" className="flex items-center lg:justify-center">
-            <img
+            <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_White.png"
               alt="spotify"
             />
           </a>
           <a href="/youtube" className="flex items-center lg:justify-center">
-            <img
+            <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
-              src="https://freelogopng.com/images/all_img/1656504144youtube-logo-png-white.png"
+              src="https://freelogopng.com/images/all_Image/1656504144youtube-logo-png-white.png"
               alt="youtube"
             />
           </a>
           <a href="/fb" className="flex items-center lg:justify-center">
-            <img
+            <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/facebook-logo.png"
               alt="facebook"
@@ -95,14 +95,14 @@ export default function home() {
             </svg>
           </a>
           <a href="/tiktok" className="flex items-center lg:justify-center">
-            <img
+            <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/tiktok-logo.png"
               alt="tiktok"
             />
           </a>
           <a href="/bg" className="flex items-center lg:justify-center">
-            <img
+            <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/removebg-logo.png"
               alt="removebg"

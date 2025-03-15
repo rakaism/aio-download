@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function BackgroundRemover() {
@@ -50,8 +51,13 @@ export default function BackgroundRemover() {
       if (data.results && data.results.length > 0) {
         const result = data.results[0];
         if (result.status && result.status.code === "ok") {
+          type Entity = {
+            kind: string;
+            image?: string;
+          };
+
           const entity = result.entities.find(
-            (ent: any) => ent.kind === "image"
+            (ent: Entity) => ent.kind === "image"
           );
           if (entity && entity.image) {
             setResultImage(entity.image);
@@ -121,7 +127,7 @@ export default function BackgroundRemover() {
             <p className="mb-2 text-lg font-medium dark:text-white">{title}</p>
           )}
           <p className="mb-2 font-medium dark:text-white">Result Image:</p>
-          <img
+          <Image
             src={`data:image/png;base64,${resultImage}`}
             alt="Processed Image"
             className="mx-auto rounded shadow-lg"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function TiktokDownloader() {
@@ -68,7 +69,7 @@ export default function TiktokDownloader() {
       {/* menampilkan metadata */}
       {thumbnail && (
         <div className="max-w-md mx-auto mb-4">
-          <img
+          <Image
             src={thumbnail}
             alt="Thumbnail Media"
             className="mx-auto rounded shadow-lg"

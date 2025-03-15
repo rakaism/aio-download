@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "AIO Downloader",
@@ -28,7 +29,7 @@ export default function RootLayout({
             <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
               <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="#" className="flex items-center">
-                  <img
+                  <Image
                     src="/landwindcss/images/logo.svg"
                     className="h-6 mr-3 sm:h-9"
                     alt="Landwind Logo"
