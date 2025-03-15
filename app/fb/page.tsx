@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function Fb() {
+export default function FbDownload() {
   const rapidApiEndpoint = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_FB as string;
   const rapidApiHostHeader = new URL(rapidApiEndpoint).host;
   const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
