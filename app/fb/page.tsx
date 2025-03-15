@@ -4,9 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function FbDownload() {
-  const rapidApiEndpoint = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_FB as string;
-  const rapidApiHostHeader = new URL(rapidApiEndpoint).host;
   const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
+  const rapidApiHost = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_FB as string;
 
   const [inputValue, setInputValue] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -18,14 +17,16 @@ export default function FbDownload() {
       return;
     }
 
-    const apiUrl = `${rapidApiEndpoint}url=${encodeURIComponent(inputValue)}`;
+    const apiUrl = `https://${rapidApiHost}/app/main.php?url=${encodeURIComponent(
+      inputValue
+    )}`;
 
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           "X-RapidAPI-Key": rapidApiKey,
-          "X-RapidAPI-Host": rapidApiHostHeader,
+          "X-RapidAPI-Host": rapidApiHost,
         },
       });
 
@@ -64,6 +65,9 @@ export default function FbDownload() {
         <div className="max-w-md mx-auto mb-4">
           <Image
             src={thumbnail}
+            width={500}
+            height={500}
+            layout="responsive"
             alt="Thumbnail Media"
             className="mx-auto rounded shadow-lg"
           />
@@ -79,7 +83,7 @@ export default function FbDownload() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder="Masukkan link Instagram di sini"
+            placeholder="Masukkan link facebook di sini"
             required
           />
           <label

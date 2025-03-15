@@ -48,7 +48,12 @@ export default function Home() {
           </div>
         </div>
         <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <Image src="\landwindcss\images\hero.png" alt="hero image" />
+          <Image
+            src="/landwindcss/images/hero.png"
+            width={500}
+            height={500}
+            alt="hero image"
+          />
         </div>
       </div>
 
@@ -58,13 +63,19 @@ export default function Home() {
             <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Full_Logo_RGB_White.png"
+              width={500}
+              height={500}
+              layout="responsive"
               alt="spotify"
             />
           </a>
           <a href="/youtube" className="flex items-center lg:justify-center">
             <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
-              src="https://freelogopng.com/images/all_Image/1656504144youtube-logo-png-white.png"
+              src="/landwindcss/images/yt-logo.png"
+              width={500}
+              height={500}
+              layout="responsive"
               alt="youtube"
             />
           </a>
@@ -72,12 +83,17 @@ export default function Home() {
             <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/facebook-logo.png"
+              width={500}
+              height={500}
+              layout="responsive"
               alt="facebook"
             />
           </a>
           <a href="/ig" className="flex items-center lg:justify-center">
             <svg
               className="h-9 hover:text-gray-900 dark:hover:text-white"
+              width={500}
+              height={500}
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
               shapeRendering="geometricPrecision"
@@ -98,6 +114,9 @@ export default function Home() {
             <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/tiktok-logo.png"
+              width={500}
+              height={500}
+              layout="responsive"
               alt="tiktok"
             />
           </a>
@@ -105,6 +124,9 @@ export default function Home() {
             <Image
               className="h-9 hover:text-gray-900 dark:hover:text-white"
               src="/landwindcss/images/removebg-logo.png"
+              width={500}
+              height={500}
+              layout="responsive"
               alt="removebg"
             />
           </a>
