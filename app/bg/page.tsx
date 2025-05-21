@@ -8,6 +8,10 @@ export default function BackgroundRemover() {
   const rapidApiHost = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_BG as string;
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imageDimensions, setImageDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const [resultImage, setResultImage] = useState("");
   const [title, setTitle] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -60,7 +64,17 @@ export default function BackgroundRemover() {
             (ent: Entity) => ent.kind === "image"
           );
           if (entity && entity.image) {
-            setResultImage(entity.image);
+            const imageData = entity.image;
+            setResultImage(imageData);
+
+            const img = new window.Image();
+            img.src = `data:image/png;base64,${imageData}`;
+            img.onload = () => {
+              setImageDimensions({
+                width: img.naturalWidth,
+                height: img.naturalHeight,
+              });
+            };
           } else {
             setErrorMsg("Gagal mengambil hasil gambar.");
           }
@@ -121,7 +135,7 @@ export default function BackgroundRemover() {
         </div>
       )}
 
-      {resultImage && (
+      {resultImage && imageDimensions && (
         <div className="max-w-md mx-auto mt-6 text-center pb-10">
           {title && (
             <p className="mb-2 text-lg font-medium dark:text-white">{title}</p>
@@ -130,6 +144,8 @@ export default function BackgroundRemover() {
           <Image
             src={`data:image/png;base64,${resultImage}`}
             alt="Processed Image"
+            width={imageDimensions.width}
+            height={imageDimensions.height}
             className="mx-auto rounded shadow-lg"
           />
           <button

@@ -72,6 +72,8 @@ export default function TiktokDownloader() {
           <Image
             src={thumbnail}
             alt="Thumbnail Media"
+            width={500}
+            height={500}
             className="mx-auto rounded shadow-lg"
           />
           {title && (
