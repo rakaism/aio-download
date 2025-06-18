@@ -4,9 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function TiktokDownloader() {
-  const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
-  const rapidApiHost = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_TT as string;
-
   const [inputValue, setInputValue] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -20,20 +17,12 @@ export default function TiktokDownloader() {
     }
 
     // fetch url
-    const apiUrl = `https://${rapidApiHost}/analysis?url=${encodeURIComponent(
-      inputValue
-    )}&hd=0`;
+    const apiUrl = `/api/tiktok?url=${encodeURIComponent(inputValue)}`;
 
     try {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": rapidApiKey,
-          "X-RapidAPI-Host": rapidApiHost,
-        },
-      });
-
+      const response = await fetch(apiUrl);
       const data = await response.json();
+
       // cek struktur response json
       if (data && data.code === 0 && data.data) {
         const dt = data.data;

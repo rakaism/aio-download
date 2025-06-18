@@ -4,10 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function IgDownloader() {
-  // client side
-  const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
-  const rapidApiHost = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_IG as string;
-
   const [inputValue, setInputValue] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -19,19 +15,13 @@ export default function IgDownloader() {
       return;
     }
 
-    const apiUrl = `https://${rapidApiHost}/convert?url=${encodeURIComponent(
-      inputValue
-    )}`;
+    const apiUrl = `api/ig?url=${encodeURIComponent(inputValue)}`;
 
     try {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": rapidApiKey,
-          "X-RapidAPI-Host": rapidApiHost,
-        },
-      });
+      const response = await fetch(apiUrl);
       const data = await response.json();
+
+      //struktur json
       if (data.media && data.media.length > 0) {
         setThumbnail(data.media[0].thumbnail || "");
         setDownloadUrl(data.media[0].url || "");
@@ -55,7 +45,7 @@ export default function IgDownloader() {
 
   return (
     <div className="pt-15 bg-white dark:bg-gray-900">
-      <h1 className="pt-5 text-center text-xl font-semibold dark:text-white">
+      <h1 className="pt-5 mb-5 text-center text-xl font-semibold dark:text-white">
         Instagram Downloader
       </h1>
 
@@ -64,6 +54,8 @@ export default function IgDownloader() {
         <div className="max-w-md mx-auto mb-4">
           <Image
             src={thumbnail}
+            width={500}
+            height={500}
             alt="Thumbnail Media"
             className="mx-auto rounded shadow-lg"
           />

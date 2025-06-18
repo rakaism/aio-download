@@ -41,7 +41,7 @@ export default function Spotify() {
     }
 
     // manggil api route
-    const apiUrl = `/api/download?songId=${encodeURIComponent(inputValue)}`;
+    const apiUrl = `/api/spotify?songId=${encodeURIComponent(inputValue)}`;
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();

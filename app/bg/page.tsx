@@ -4,9 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function BackgroundRemover() {
-  const rapidApiKey = process.env.NEXT_PUBLIC_RAPIDAPI_KEY as string;
-  const rapidApiHost = process.env.NEXT_PUBLIC_RAPIDAPI_HOST_BG as string;
-
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageDimensions, setImageDimensions] = useState<{
     width: number;
@@ -36,18 +33,17 @@ export default function BackgroundRemover() {
     const formData = new FormData();
     formData.append("image", selectedFile);
 
-    const apiUrl = `https://${rapidApiHost}/v1/results?mode=fg-image`;
+    const apiUrl = `api/bg?mode=fg-image`;
 
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "x-rapidapi-host": rapidApiHost,
-          "x-rapidapi-key": rapidApiKey,
-        },
         body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const data = await response.json();
 
